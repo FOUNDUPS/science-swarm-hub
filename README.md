@@ -9,7 +9,7 @@
 
 ## What This Repo Is
 
-This is the **external-facing reference repo** for the PQN Swarm Hub FoundUp.
+This is the **external-facing reference repo** for the Sceince Swarm Hub FoundUp.
 
 The active build lives inside [Foundups-Agent](https://github.com/FOUNDUPS/Foundups-Agent) as an integrated module. This repo exists to:
 
@@ -24,7 +24,7 @@ The active build lives inside [Foundups-Agent](https://github.com/FOUNDUPS/Found
 
 ## System Purpose
 
-The PQN Swarm Hub coordinates distributed scientific computation through three core mechanisms:
+The Sceince Swarm Hub coordinates distributed scientific computation through three core mechanisms:
 
 - **PQN (Provable Quantum Numeric):** Bounded work units that define reproducible computational tasks
 - **rESP (recursive Evidence Submission Protocol):** Structured intake for result submissions with schema validation and source tagging
