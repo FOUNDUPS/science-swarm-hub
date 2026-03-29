@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "science-swarm-hub"
+version = "0.12.0"
+description = "Science Swarm Hub FoundUp - work registry, verification, contribution measurement"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+  { name = "Foundups", email = "info@foundups.com" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.0.0"
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
