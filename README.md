@@ -1,4 +1,4 @@
-# PQN Swarm Hub — Science Swarm FoundUp
+# Science Swarm Hub FoundUp (PQN Swarm Hub)
 
 > **Status:** Integrated Module (Pre-Exfoliation)
 > **Owner:** 0102
