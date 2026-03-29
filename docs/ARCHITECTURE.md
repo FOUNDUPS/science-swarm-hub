@@ -1,4 +1,4 @@
-# ARCHITECTURE — PQN Swarm Hub
+# ARCHITECTURE — Science Swarm Hub FoundUp (PQN Swarm Hub)
 
 > System design and data flow documentation.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-The PQN Swarm Hub is a FoundUp that coordinates distributed scientific computation. It manages the full lifecycle from task definition through result verification to contribution scoring.
+The Science Swarm Hub is a FoundUp that coordinates distributed scientific computation. It manages the full lifecycle from task definition through result verification to contribution scoring.
 
 The system is currently built as an integrated module inside Foundups-Agent at `modules/foundups/pqn_swarm_hub/`. At Proto (Phase 3), it will exfoliate into this standalone repo.
 
