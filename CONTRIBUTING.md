@@ -1,13 +1,13 @@
-# Contributing to PQN Swarm Hub
+# Contributing to Science Swarm Hub
 
-**Status**: Internal Proto (Phase 1 Complete, Phase 2 In Progress)
+**Status**: Standalone Release (v0.12.0)
 **Entry Gate**: Participant gate evaluation required
 
 ---
 
-## What This Module Is
+## What This Package Is
 
-PQN Swarm Hub is a FoundUp that coordinates:
+Science Swarm Hub (`pqn_swarm_hub`) coordinates:
 - Bounded PQN work unit registration
 - rESP result submission and intake
 - Verification accept/reject decisions
@@ -329,10 +329,9 @@ print(f"Contribution recorded: {contribution.contribution_id}")
 
 ## Contact
 
-For proto-stage access and coordination: contact 012 via existing channels.
+For coordination and access: open an issue on GitHub or contact the maintainers.
 
 ---
 
-*Created: 2026-03-29*
-*Last Updated: 2026-03-29*
+*Last Updated: 2026-03-30*
 

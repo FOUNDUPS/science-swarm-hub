@@ -1,4 +1,54 @@
-# ModLog - PQN Swarm Hub FoundUp
+# ModLog - Science Swarm Hub
+
+## V0.12.1 - Standalone Release Prep (Documentation Reconciliation)
+
+**Author**: 0102
+**Date**: 2026-03-30
+
+### Changes
+
+Reconciled documentation for standalone reality:
+
+- Updated `README.md`:
+  - Truthful install path (`pip install -e .` or `pip install science-swarm-hub`)
+  - Quick start with actual service API (not raw dataclasses)
+  - Removed monorepo path references
+  - Added requirements section
+
+- Updated `INTERFACE.md`:
+  - Renamed to "Science Swarm Hub"
+  - Removed monorepo control-plane references
+  - Updated downstream distribution example
+
+- Updated `CONTRIBUTING.md`:
+  - Status corrected to "Standalone Release"
+  - Removed proto-stage language
+
+- Updated `RUNBOOK.md`:
+  - Truthful install path
+  - Removed monorepo exfoliation references
+  - Updated repository section
+
+- Updated `ROADMAP.md`:
+  - Phase 3 marked COMPLETE
+  - Simplified execution priority section
+
+- Cleaned `docs/`:
+  - Removed stale migration docs (DUAL_REMOTE_PLAN, EXFOLIATION_PLAN, etc.)
+  - Added docs/README.md pointing to main documentation
+
+- Added `RELEASE_CHECKLIST.md`:
+  - Pre-release verification steps
+  - Version bump process
+  - Tagging and push workflow
+
+### Verification
+
+- All 108 tests pass
+- Package installs correctly (`pip install -e .[test]`)
+- Import path verified (`from pqn_swarm_hub import ...`)
+
+---
 
 ## V0.12.0 - Phase 3 Prep Scaffold (Migration Ready)
 

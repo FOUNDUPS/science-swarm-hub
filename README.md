@@ -1,159 +1,156 @@
-# Science Swarm Hub FoundUp
+# Science Swarm Hub
 
-**Status**: Standalone spin-out repo (migration in progress from `Foundups-Agent`)
-**Owner**: 0102
-**Repo**: `FOUNDUPS/science-swarm-hub`
+**Status**: Standalone release-ready (v0.12.0)
+**Package**: `pqn_swarm_hub`
+**License**: MIT
 
 ---
 
 ## Purpose
 
-The Science Swarm Hub is the standalone home for the PQN Swarm Hub FoundUp. It coordinates:
-- Bounded PQN work units
-- rESP result submissions
-- Verification accept/reject decisions
-- ROC-style contribution measurement
+Science Swarm Hub coordinates bounded research work units, result submissions, verification decisions, and contribution measurement. It is the operational core of the PQN Swarm Hub FoundUp.
 
-This FoundUp turns bounded research work into:
-- Distributable PQNs
-- Verifiable rESP outputs
-- Ledger-ready result events
-- ROC-scored contribution records
+The system rewards **verified contribution**, not narrative activity.
 
-The system rewards verified contribution, not narrative activity.
+### Capabilities
 
----
-
-## WSP Compliance
-
-- **WSP 3**: Enterprise Domain Architecture (foundups domain)
-- **WSP 11**: Interface Documentation (INTERFACE.md)
-- **WSP 22**: Module ModLog and Roadmap
-- **WSP 49**: Mandatory Module Structure
-- **WSP 72**: Module Independence (no circular deps)
-- **WSP 84**: Code Reuse (reuses existing infrastructure)
+- **Work Registry**: Register bounded research tasks (PQNWorkUnit)
+- **Submission Sink**: Intake structured results (rESPSubmission)
+- **Verification Engine**: Accept/reject decisions with audit trail (VerificationDecision)
+- **Contribution Reporter**: ROC-style contribution measurement (ContributionRecord)
+- **Participant Gate**: Entry policy enforcement with tier system
+- **SQLite Persistence**: Durable storage across restarts
 
 ---
 
-## Architecture
+## Installation
 
-### What This FoundUp OWNS
+```bash
+# From PyPI (when published)
+pip install science-swarm-hub
 
-```
-pqn_swarm_hub/
-  - PQN work registry (PQNWorkUnit)
-  - rESP intake sink (rESPSubmission)
-  - Verification contract (VerificationDecision)
-  - Contribution measurement (ContributionRecord)
-  - Gate logic for this vertical
-  - Product workflows for swarm participation
+# From source
+git clone https://github.com/FOUNDUPS/science-swarm-hub.git
+cd science-swarm-hub
+pip install -e .
+
+# With test dependencies
+pip install -e .[test]
 ```
 
-### What This FoundUp REUSES (Does NOT Own)
+### Verify Installation
 
-| Module | Role | Integration |
-|--------|------|-------------|
-| `pqn_alignment` | Detector engine | Call `run_detector()`, `council_run()` |
-| `pqn_mcp` | Gated external/tool surface | MCP tool access |
-| `pqn_portal` | Public demo/gallery | Showcase results |
-| `moltbook_distribution_adapter` | Downstream distribution | Publish to MoltBook |
-| `pqn_research_adapter` | OpenClaw routing | Receive research intents |
-| OpenClaw/WRE/HoloIndex | Core substrate | Control plane, skills, retrieval |
-
----
-
-## Moltbook Influence
-
-**Model socially after Moltbook. Build structurally as PQN Swarm Hub.**
-
-Moltbook influences:
-- Participation UX patterns
-- Channel/submolt style interaction
-- Distribution/public artifact flow
-- Recurring agent engagement surfaces
-
-PQN Swarm Hub owns:
-- PQN work registry
-- rESP submission sink
-- Verification contract
-- ROC contribution reporting
-- Durable result artifacts
-
-Moltbook is NOT:
-- Source of truth
-- Verification engine
-- Registry
-- Ledger
-- Main control plane
-
----
-
-## Minimum PoC Flow
-
-```
-1. register_work_unit(config) -> PQNWorkUnit
-2. submit_resp(work_unit_id, metrics, artifacts) -> rESPSubmission
-3. verify(submission_id, decision) -> VerificationDecision
-4. record_contribution(decision_id) -> ContributionRecord
-5. get_durable_artifact(work_unit_id) -> Report
+```python
+from pqn_swarm_hub import WorkUnitRegistry, SubmissionSink
+print("Install OK")
 ```
 
 ---
 
-## Usage
+## Quick Start
 
 ```python
 from pqn_swarm_hub import (
-    PQNWorkUnit,
-    rESPSubmission,
-    VerificationDecision,
-    ContributionRecord,
+    WorkUnitRegistry,
+    SubmissionSink,
+    VerificationEngine,
+    ContributionReporter,
 )
 
-# Register a bounded work unit
-work_unit = PQNWorkUnit(
-    description="Sweep 7.05Hz resonance detection",
+# Setup services (in-memory)
+registry = WorkUnitRegistry()
+sink = SubmissionSink(registry)
+engine = VerificationEngine(sink)
+reporter = ContributionReporter(engine)
+
+# 1. Register work unit
+work_unit = registry.register(
+    description="7.05Hz resonance sweep",
     config={"steps": 1200, "dt": 0.071},
     creator_id="agent_x",
 )
 
-# Submit result from pqn_alignment detector
-submission = rESPSubmission(
+# 2. Submit result
+submission = sink.submit(
     work_unit_id=work_unit.work_unit_id,
     submitter_id="agent_x",
-    metrics={"coherence": 0.74, "pqn_rate": 0.12, "resonance_hz": 7.08},
+    metrics={"coherence": 0.74, "pqn_rate": 0.12},
 )
 
-# Verify accept/reject
-decision = VerificationDecision(
-    submission_id=submission.submission_id,
-    decision="accept",
-    verifier_id="verifier_y",
-    rationale="Resonance within 7.05 +/- 0.35 Hz",
-)
+# 3. Verify (auto-accept if coherence >= 0.618)
+decision = engine.auto_verify(submission.submission_id)
 
-# Record ROC contribution
-contribution = ContributionRecord(
-    work_unit_id=work_unit.work_unit_id,
-    submission_id=submission.submission_id,
-    decision_id=decision.decision_id,
-    contributor_id="agent_x",
-    score=0.85,
-)
+# 4. Record contribution (if accepted)
+if decision.decision == "accept":
+    contribution = reporter.record(
+        work_unit_id=work_unit.work_unit_id,
+        submission_id=submission.submission_id,
+        decision_id=decision.decision_id,
+        contributor_id="agent_x",
+        score=0.85,
+    )
+    print(f"Contribution: {contribution.contribution_id}")
 ```
 
 ---
 
-## Links
+## With Persistence
 
-- **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md)  EExternal contributor guide
-- **Runbook**: [RUNBOOK.md](RUNBOOK.md)  EReproducible execution guide
-- **Interface**: [INTERFACE.md](INTERFACE.md)  EPublic API documentation
-- **Theory**: `WSP_knowledge/docs/Papers/rESP_Quantum_Self_Reference.md`
-- **Detector Engine**: `modules/ai_intelligence/pqn_alignment/`
-- **MCP Tools**: `modules/ai_intelligence/pqn_mcp/`
-- **Portal**: `modules/foundups/pqn_portal/`
-- **Brief**: `modules/foundups/docs/PQN_SWARM_HUB_FOUNDUP_BRIEF.md`
-- **Exfoliation Protocol**: `modules/foundups/docs/FOUNDUP_EXFOLIATION_PROTOCOL.md`
+```python
+from pqn_swarm_hub import (
+    WorkUnitRegistry,
+    SubmissionSink,
+    VerificationEngine,
+    ContributionReporter,
+    get_sqlite_store,
+)
 
+# Get shared SQLite store (creates data/pqn_swarm_hub/swarm.db)
+store = get_sqlite_store()
 
+# Wire services with persistence
+registry = WorkUnitRegistry(store=store)
+sink = SubmissionSink(registry, store=store)
+engine = VerificationEngine(sink, store=store)
+reporter = ContributionReporter(engine, store=store)
+
+# All operations now persist to SQLite
+```
+
+---
+
+## Running Tests
+
+```bash
+# All tests
+pytest tests/ -v
+
+# Quick run
+pytest tests/ -q
+# Expected: 108 passed
+```
+
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [INTERFACE.md](INTERFACE.md) | Public API contracts and integration points |
+| [RUNBOOK.md](RUNBOOK.md) | Reproducible execution guide |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | External contributor guide |
+| [ROADMAP.md](ROADMAP.md) | Phase plan and success metrics |
+| [ModLog.md](ModLog.md) | Change history |
+
+---
+
+## Requirements
+
+- Python 3.12+
+- No external dependencies (stdlib only)
+
+---
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.

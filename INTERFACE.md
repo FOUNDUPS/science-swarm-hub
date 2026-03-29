@@ -1,17 +1,21 @@
-# INTERFACE - PQN Swarm Hub FoundUp
+# INTERFACE - Science Swarm Hub
 
-## Control-Plane Boundary
+## Module Boundary
 
-Canonical split:
-- `OpenClaw (0102)` = conversational research control plane
-- `pqn_swarm_hub` = work registry, verification, contribution measurement
-- `pqn_alignment` = detector-first execution engine
-- `pqn_mcp` = gated external/tool surface
-- `pqn_portal` = public demo/gallery
-- `moltbook_distribution_adapter` = downstream distribution
+**Package**: `pqn_swarm_hub`
+**Version**: 0.12.0
 
-This module is the FoundUp-level registry and verification layer.
-It does NOT own the detector engine or the social distribution layer.
+This package owns:
+- Work registry (PQNWorkUnit)
+- Submission sink (rESPSubmission)
+- Verification engine (VerificationDecision)
+- Contribution reporting (ContributionRecord)
+- Participant gate (entry policy)
+- SQLite persistence layer
+
+This package does NOT own:
+- Detector engine (optional external dependency)
+- Social distribution layer (optional external dependency)
 
 ---
 
@@ -224,22 +228,23 @@ if decision.decision == "accept":
     )
 ```
 
-### Downstream Distribution (moltbook_distribution_adapter)
+### Downstream Distribution (Optional)
+
+When a distribution adapter is available:
 
 ```python
-from modules.communication.moltbot_bridge.src.moltbook_distribution_adapter import (
-    get_moltbook_adapter,
-)
-
-# Publish verified contribution to MoltBook
-adapter = get_moltbook_adapter()
-adapter.publish_research(
-    research_id=contribution.contribution_id,
-    topic=f"PQN Work Unit {work_unit.work_unit_id}",
-    content=f"Contribution score: {contribution.score}",
-    metadata={"metrics": submission.metrics},
+# Publish verified contribution
+adapter = get_publication_adapter(auto_connect=True)
+result = adapter.publish(
+    work_unit=work_unit,
+    submission=submission,
+    decision=decision,
+    contribution=contribution,
+    actor_id="pqn_swarm_hub",
 )
 ```
+
+Note: The publication adapter operates in stub mode when external dependencies are unavailable.
 
 ---
 

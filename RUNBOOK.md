@@ -1,8 +1,8 @@
-# RUNBOOK - PQN Swarm Hub
+# RUNBOOK - Science Swarm Hub
 
-**Version**: Phase 2 Complete
-**Status**: Reproducible execution guide (ready for Phase 3 prep)
-**Author**: 0102
+**Version**: 0.12.0
+**Status**: Standalone release-ready
+**Package**: `pqn_swarm_hub`
 
 ---
 
@@ -44,7 +44,7 @@ pqn_swarm_hub/
 ### Runtime
 
 - Python 3.12+
-- Active venv with `modules/foundups/pqn_swarm_hub` importable
+- Package installed: `pip install -e .` or `pip install science-swarm-hub`
 
 ### Required Imports
 
@@ -68,13 +68,15 @@ from pqn_swarm_hub import (
 )
 ```
 
-### Optional Adapter Availability
+### Optional External Adapters
 
-| Adapter | Import Check | Fallback |
-|---------|--------------|----------|
-| MoltBook | `from modules.communication.moltbot_bridge.src.moltbook_distribution_adapter import get_moltbook_adapter` | Stub mode |
-| FAMDaemon | `from modules.foundups.agent_market.src.fam_daemon import get_fam_daemon` | Stub mode |
-| Detector | `from modules.ai_intelligence.pqn_alignment import run_detector` | NO fallback |
+| Adapter | Fallback |
+|---------|----------|
+| MoltBook (publication) | Stub mode - publications queued locally |
+| FAMDaemon (events) | Stub mode - events logged locally |
+| Detector (pqn_alignment) | Not available in standalone mode |
+
+Note: The standalone package operates fully without external adapters. External submissions do not require the detector.
 
 ### Persistence Defaults
 
@@ -508,28 +510,16 @@ The following are implemented and tested (108 tests passing):
 - [x] External submission type (source field tracking)
 - [x] External contributor path (CONTRIBUTING.md + 22 gate tests)
 
-### Proto-Only (Not Yet Production-Ready)
+### Future Scope (Not Yet Implemented)
 
-- V3 consensus schema: Not stable (Shapley/ZK future scope)
-- GPD work unit type: Separate bootstrap lane (not blocker)
+- V3 consensus schema (Shapley/ZK)
+- GPD-specific work unit types
 
-### Ready for Exfoliation Review
+### Repository
 
-Per `PROTO_EXFOLIATION_CHECKLIST.md`:
-- Phase 1: 10/10 slices complete
-- Phase 2: 3/3 slices complete (FAM live, external submission, contributor path)
-- All true exfoliation blockers: CLEARED
-- Architect decision: APPROVE_PHASE_3_PREP
+- **Origin**: `FOUNDUPS/science-swarm-hub`
+- **Backup**: `Foundup/science-swarm-hub`
 
-### Externalization Path (Phase 3 Prep)
-
-```
-FOUNDUPS/pqn-swarm-hub          # origin (org repo)
-Foundup/pqn-swarm-hub           # backup (personal repo)
- # adapter stub remains in monorepo
-```
-
-**Next slice**: `pqn_swarm_hub_phase3_prep_scaffold`  Edual-remote setup, migration script, stub adapter
 
 ---
 
@@ -577,5 +567,5 @@ gate = ParticipantGate(store=store)
 ---
 
 *Created: 2026-03-29*
-*Last Updated: 2026-03-29 (Phase 2 complete  Eexfoliation review)*
+*Last Updated: 2026-03-30*
 

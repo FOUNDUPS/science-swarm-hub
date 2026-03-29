@@ -1,6 +1,6 @@
-# ROADMAP - PQN Swarm Hub FoundUp
+# ROADMAP - Science Swarm Hub
 
-## Phase Plan (per Exfoliation Protocol)
+## Phase Plan
 
 ### Phase 0: Internal PoC (COMPLETE)
 
@@ -77,11 +77,11 @@
 
 ---
 
-### Phase 3: Spin-Out (PREP COMPLETE)
+### Phase 3: Standalone Release (COMPLETE)
 
-**Goal**: Externalize to standalone FoundUp repo.
+**Goal**: Standalone package ready for independent use.
 
-**Phase 3 Prep** (2026-03-29):
+**Status** (2026-03-30):
 - [x] `MIGRATION_MANIFEST.md`  Efile disposition list
 - [x] `DUAL_REMOTE_PLAN.md`  Erepo setup commands
 - [x] `EXFOLIATION_PLAN.md`  Efull procedure with rollback
@@ -102,11 +102,14 @@
 
 ---
 
-## Current Execution Priority
+## Current Status
 
-**Phase 0**: COMPLETE (scaffold @ 35d1e2275)
+**All Phases**: COMPLETE
 
-**Phase 1 Progress**: COMPLETE
+**Phase 0**: Scaffold complete
+**Phase 1**: Internal PoC complete  
+**Phase 2**: Externalization ready
+**Phase 3**: Standalone release ready
 - [x] `pqn_swarm_hub_detector_bridge`  EDetectorBridge wires pqn_alignment.run_detector() into submission flow
 - [x] `pqn_swarm_hub_gate`  EParticipantGate with tier system, policy hooks, internal-first auto-approve
 - [x] `pqn_swarm_hub_fam_adapter`  EFAMAdapter with emit_contribution_event(), stub fallback
@@ -123,9 +126,7 @@
 
 **Total tests**: 108 passing
 
-**Phase 3 Prep**: COMPLETE (migration scaffold ready)
-
-**Next action**: 012 approval for repo creation and migration execution
+**Next**: Future scope items (V3 consensus, GPD work unit types)
 
 ---
 
