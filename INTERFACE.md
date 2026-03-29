@@ -1,4 +1,4 @@
-# INTERFACE — PQN Swarm Hub FoundUp
+# INTERFACE — Science Swarm Hub FoundUp (PQN Swarm Hub)
 
 > Reference contract definitions and public API surface for external contributors.
 > Synced from: `Foundups-Agent/modules/foundups/pqn_swarm_hub/INTERFACE.md`
