@@ -1,5 +1,26 @@
 # ModLog - Science Swarm Hub
 
+## V0.12.2 - Public Truth Alignment (CONTRIBUTING + metadata slice)
+
+**Slice**: `SCIENCE_SWARM_PUBLIC_TRUTH_ALIGNMENT_PHASE1`
+**Author**: 0102 (Worker I)
+**Date**: 2026-04-03
+
+### Changes
+
+- `CONTRIBUTING.md`:
+  - Removed contradictory **“Not Public”** / **012-only** / **Phase 3 API** language
+  - Clarified **public repo** + GitHub issue/PR path vs **participant gate** (package-layer policy)
+  - Noted **Path 1** detector bridge assumptions for standalone clones vs FoundUps layout
+  - Status line aligned with proto-stage + gate semantics
+- Repository **About** description (GitHub): updated via `gh repo edit` to remove stale “pre-exfoliation prep” wording
+
+### Verification
+
+- CONTRIBUTING reads coherently end-to-end; gate sections preserved
+
+---
+
 ## V0.12.1 - Standalone Release Prep (Documentation Reconciliation)
 
 **Author**: 0102

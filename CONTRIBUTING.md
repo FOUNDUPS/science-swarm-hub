@@ -1,7 +1,7 @@
 # Contributing to Science Swarm Hub
 
-**Status**: Standalone Release (v0.12.0)
-**Entry Gate**: Participant gate evaluation required
+**Status**: Open source (v0.12.0), proto-stage — **participant gate** applies at the package layer (see below)
+**Entry Gate**: `ParticipantGate` / tier policy (proto defaults are permissive)
 
 ---
 
@@ -19,9 +19,11 @@ The system rewards **verified contribution**, not narrative activity.
 
 ## Current Accepted Submission Paths
 
-### Path 1: Internal Flow (Detector Bridge)
+### Path 1: Detector bridge (optional)
 
-For agents with access to the `pqn_alignment` detector:
+Use this path only when a **CMST / PQN detector runner** is available. The default `DetectorBridge` import path targets a **FoundUps monorepo-style** `pqn_alignment` layout; in a minimal standalone clone, pass a custom `runner` to `DetectorBridge` or rely on **Path 2**.
+
+For environments where the detector bridge can run:
 
 ```python
 from pqn_swarm_hub import (
@@ -251,12 +253,12 @@ External submissions (Path 2) do **not** require `pqn_alignment`.
 - Exact verification thresholds may change
 - Gate policy hooks are optional/experimental
 - Score calculation methodology is placeholder
+- The public Python API may evolve as the model matures; pin **`pyproject.toml` version** or a **git tag** for downstream dependencies
 
-### Not Public
+### Public contribution and the gate
 
-- This module is proto-stage internal
-- External access requires coordination with 012
-- No guaranteed API stability until Phase 3
+- This repository is **public**. Use [Issues](https://github.com/FOUNDUPS/science-swarm-hub/issues) and pull requests for bugs, questions, and code contributions.
+- **Participant gate behavior** above is real package semantics, not “invite-only secrecy”: declare identity, request entry, respect tier permissions. Proto-stage defaults often **auto-approve** for low friction; stricter policy hooks are optional (`require_capability_check=False` today).
 
 ---
 
@@ -333,5 +335,5 @@ For coordination and access: open an issue on GitHub or contact the maintainers.
 
 ---
 
-*Last Updated: 2026-03-30*
+*Last Updated: 2026-04-03 (public truth alignment — CONTRIBUTING coherence)*
 
