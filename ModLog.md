@@ -19,6 +19,8 @@
 
 - CONTRIBUTING reads coherently end-to-end; gate sections preserved
 
+**Note**: `pyproject.toml` / README **v0.12.0** unchanged here — doc-only ModLog tranche until a semver tag release slice.
+
 ---
 
 ## V0.12.1 - Standalone Release Prep (Documentation Reconciliation)
