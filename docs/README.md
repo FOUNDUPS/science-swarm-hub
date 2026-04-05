@@ -12,6 +12,18 @@
 | ModLog | [../ModLog.md](../ModLog.md) | Change history |
 | Release Checklist | [../RELEASE_CHECKLIST.md](../RELEASE_CHECKLIST.md) | Release process |
 
+## Architecture
+
+| Document | Location | Description |
+|----------|----------|-------------|
+| FoundUps Architecture | [architecture/FOUNDUPS_ARCHITECTURE.md](architecture/FOUNDUPS_ARCHITECTURE.md) | How Science Swarm Hub fits into the wider FoundUps ecosystem |
+
+## External FoundUp And Community
+
+| Document Group | Location | Description |
+|----------------|----------|-------------|
+| External FoundUp Docs | [external_foundup/](external_foundup/) | Readiness, release, contribution, and Discord planning docs published for external/operator access |
+
 ## Test Documentation
 
 | Document | Location | Description |

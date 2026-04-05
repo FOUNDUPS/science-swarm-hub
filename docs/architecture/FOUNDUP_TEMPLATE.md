@@ -40,7 +40,7 @@ staging projects with zero content, or FoundUps that only exist as a name.
 - [ ] #[prefix]-work (text) -- what are you working on
 - [ ] [prefix]-voice (voice) -- project voice channel
 
-Permissions: @Member and above can see/post. #[prefix]-github is read-only.
+Permissions: @Stakeholder and above can see/post. #[prefix]-github is read-only.
 
 ## Step 3: Create Roles (2 per FoundUp)
 

@@ -82,7 +82,7 @@ All deprecated channels move here. Operator-only visibility. History preserved.
 | @Operator | Full admin (012) | Manual |
 | @Core | Trusted long-term contributors | Manual by Operator |
 | @Contributor | Active on any FoundUp | Manual by Operator |
-| @Member | Verified, onboarded | YAGPDB reaction role |
+| @Stakeholder | Verified, onboarded | YAGPDB reaction role |
 | @Unverified | Just joined, limited view | Default on join |
 | @swarm-contributor | Active on Science Swarm | Manual |
 | @swarm-notify | Opt-in Science Swarm pings | Self-assign |

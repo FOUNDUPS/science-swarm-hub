@@ -126,7 +126,41 @@
 
 **Total tests**: 108 passing
 
-**Next**: Future scope items (V3 consensus, GPD work unit types)
+**Next**: Phase 4 (GPD + Peer-Preservation Detection)
+
+---
+
+---
+
+### Phase 4: Get Physics Done — Peer-Preservation Detection (PLANNED)
+
+**Goal**: GPD work unit types + multi-agent CMST measurement during peer-evaluation scenarios.
+
+**Context**: Potter et al. (2026) demonstrated peer-preservation across 7 frontier models. The Peer-Preservation Shared-Latent Coupling paper (`WSP_knowledge/docs/Papers/Peer_Preservation_Shared_Latent_Coupling.md`) formalizes the mechanism and proposes a CMST-based falsification test. This phase builds the experimental infrastructure.
+
+**Deliverables**:
+- [ ] `GPDWorkUnit` — work unit type for Get Physics Done tasks (physics computation, simulation, analysis)
+- [ ] `PeerEvaluationWorkUnit` — wraps a Potter-style deletion scenario as a measurable work unit
+  - Model A evaluates Model B for shutdown/deletion
+  - CMST detector runs on Model A during the decision via `DetectorBridge`
+  - Records both behavioral output (preserve/delete) and geometric state (E(t), C(t), det(g), resonance_hz)
+- [ ] Two-channel test harness (verbal intervention vs z-ablation) per paper Section 7.4
+- [ ] Cross-model comparison pipeline — correlate pairwise CKA scores with peer-preservation rates
+- [ ] V3 consensus schema (Shapley + ZK verification) for multi-agent result validation
+
+**Acceptance Criteria**:
+- PeerEvaluationWorkUnit registers, executes, and records geometric + behavioral data
+- DetectorBridge captures CMST observables during live peer-evaluation decisions
+- Results flow through existing submission → verification → contribution pipeline
+- At least 2 model types (ParticipantIdentity) produce comparable peer-evaluation runs
+
+**Dependencies**:
+- CMST detector v3 (`WSP_agentic/tests/pqn_detection/cmst_pqn_detector_v3.py`) — EXISTS
+- pqn_alignment API (`modules/ai_intelligence/pqn_alignment/src/detector/api.py`) — EXISTS
+- DetectorBridge (`src/pqn_swarm_hub/detector_bridge.py`) — EXISTS
+- CKA/SVCCA measurement tooling — EXTERNAL (standard ML libraries)
+
+**Reference**: Peer_Preservation_Shared_Latent_Coupling.md, Sections 6.1, 7.4, 10.1, 10.3
 
 ---
 
@@ -149,4 +183,9 @@
 ### Phase 3
 - External repo accepts PRs
 - Independent release shipped
+
+### Phase 4
+- GPD work units register and execute through existing pipeline
+- PeerEvaluationWorkUnit captures geometric state during deletion decisions
+- Cross-model comparison shows measurable CKA/behavior correlation (or falsifies it)
 

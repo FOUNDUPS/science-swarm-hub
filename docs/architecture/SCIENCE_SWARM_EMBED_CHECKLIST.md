@@ -12,7 +12,7 @@ Prerequisites: FOUNDUPS_ARCHITECTURE.md and DISCORD_BLUEPRINT.md committed.
 - [ ] Create @Operator role (red, hoisted, admin permissions). Assign to 012.
 - [ ] Create @Core role (keep existing CORE members, rename role)
 - [ ] Create @Contributor role (green, hoisted)
-- [ ] Create @Member role (rename existing Du role)
+- [ ] Create @Stakeholder role (rename existing Du role)
 - [ ] Create @Unverified role (grey, limited visibility)
 - [ ] Create @swarm-contributor role (blue)
 - [ ] Create @swarm-notify role (light blue, self-assignable)
@@ -21,11 +21,11 @@ Prerequisites: FOUNDUPS_ARCHITECTURE.md and DISCORD_BLUEPRINT.md committed.
 
 ## Phase 2: Map Existing Members to New Roles
 
-- [ ] All existing Du members -> @Member (rename the role)
+- [ ] All existing Du members -> @Stakeholder (rename the role)
 - [ ] Dao + Un members -> also get @Contributor
 - [ ] CORE members -> @Core (rename the role)
 - [ ] 0102 -> @Operator (rename the role)
-- [ ] Verified members -> ensure they have @Member
+- [ ] Verified members -> ensure they have @Stakeholder
 
 ## Phase 3: Create New Categories and Channels
 
@@ -78,7 +78,7 @@ Prerequisites: FOUNDUPS_ARCHITECTURE.md and DISCORD_BLUEPRINT.md committed.
 
 - [ ] Archive Dao, Un roles (after members mapped to @Contributor)
 - [ ] Archive EDUIT NPO, EDUIT Partners, Discord Dawg, Beneficial AI
-- [ ] Archive Verified (after members confirmed in @Member)
+- [ ] Archive Verified (after members confirmed in @Stakeholder)
 - [ ] Archive Waiting Room, Pandez Guard, Purge, Tickets
 
 ## Phase 6: Bot Cleanup
@@ -90,7 +90,7 @@ Prerequisites: FOUNDUPS_ARCHITECTURE.md and DISCORD_BLUEPRINT.md committed.
 
 ## Phase 7: Configure YAGPDB
 
-- [ ] Reaction role: checkmark in #start-here -> @Member (remove @Unverified)
+- [ ] Reaction role: checkmark in #start-here -> @Stakeholder (remove @Unverified)
 - [ ] Reaction role: Science Swarm emoji -> @swarm-notify
 - [ ] Reaction role: Geoze emoji -> @geoze-notify
 - [ ] Configure automod: spam, link filter, raid protection
@@ -114,7 +114,7 @@ Prerequisites: FOUNDUPS_ARCHITECTURE.md and DISCORD_BLUEPRINT.md committed.
 ## Phase 10: Set Permissions
 
 - [ ] @everyone / @Unverified: see only #rules, #start-here, #announcements
-- [ ] @Member: see and post in all public channels
+- [ ] @Stakeholder: see and post in all public channels
 - [ ] ARCHIVE category: Operator-only visibility
 - [ ] #mod-room: Operator-only
 - [ ] Read-only channels: send messages disabled except Operator/webhooks
