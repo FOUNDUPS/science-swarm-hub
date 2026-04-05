@@ -44,7 +44,7 @@ pqn_swarm_hub/
 ### Runtime
 
 - Python 3.12+
-- Package installed: `pip install -e .` or `pip install science-swarm-hub`
+- Package installed: `pip install -e .` (from source; PyPI not yet published)
 
 ### Required Imports
 
